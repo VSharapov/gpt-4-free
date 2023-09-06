@@ -8,9 +8,9 @@ Currently none
 
 ## TODO
 
-- CLI wrapped in an API wrapped in a webUI
-- Not painful to use via mobile browser
-- Replicate the conversation functionality
-- Multiple-conversations with threads
-- Dead simple login
-- Queueing & retry logic
+- [ ] CLI wrapped in an API wrapped in a webUI
+- [ ] Not painful to use via mobile browser
+- [ ] Replicate the conversation functionality
+- [ ] Multiple-conversations with threads
+- [ ] Dead simple login
+- [ ] Queueing & retry logic
