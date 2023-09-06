@@ -1,0 +1,4 @@
+__pycache__/
+venv/
+
+OPENAI_API_KEY.env
