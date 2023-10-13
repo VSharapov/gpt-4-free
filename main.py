@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import openai
 import load_env
 import os

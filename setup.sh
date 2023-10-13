@@ -25,4 +25,5 @@ if [ ! -f "OPENAI_API_KEY.env" ]; then
 fi
 
 # Done
-echo "Setup complete."
+echo "Setup complete. To activate the virtual environment, run the following command:"
+echo ". venv/bin/activate"
