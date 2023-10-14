@@ -1,15 +1,60 @@
-<button id="test">Test</button>
+<form id="apiForm">
+    <input type="text" name="gpt-4-free-id" value="admin"><br>
+    <input type="password" name="gpt-4-free-secret" value="password"><br>
+    <select name="openaiEndpoint">
+        <option value="Audio" disabled>Audio</option>
+        <option value="ChatCompletion" selected>ChatCompletion</option>
+        <option value="Completion" disabled>Completion</option>
+        <option value="Embedding" disabled>Embedding</option>
+        <option value="File" disabled>File</option>
+        <option value="FineTune" disabled>FineTune</option>
+        <option value="FineTuningJob" disabled>FineTuningJob</option>
+        <option value="Image" disabled>Image</option>
+        <option value="Model" disabled>Model</option>
+        <option value="Moderation" disabled>Moderation</option>
+    </select><br>
+    <select name="model">
+        <option value="gpt-4">gpt-4</option>
+        <option value="gpt-4-0613">gpt-4-0613</option>
+        <option value="gpt-4-32k">gpt-4-32k</option>
+        <option value="gpt-4-32k-0613">gpt-4-32k-0613</option>
+        <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
+        <option value="gpt-3.5-turbo-0613">gpt-3.5-turbo-0613</option>
+        <option value="gpt-3.5-turbo-16k">gpt-3.5-turbo-16k</option>
+        <option value="gpt-3.5-turbo-16k-0613">gpt-3.5-turbo-16k-0613</option>
+    </select><br>    <!-- TODO: models should be dynamic -->
+    <input type="text" name="role1" value="system"><br>
+    <input type="text" name="content1" value="You are a helpful assistant."><br>
+    <input type="text" name="role2" value="user"><br>
+    <input type="text" name="content2" value="What is a dingus?"><br>
+    <button type="button" id="submit">Submit</button>
+</form>
 <div id="output"></div>
 <script>
-document.getElementById("test").onclick = function() {
-  fetch('/run_script', {method: 'POST'})
+document.getElementById("submit").onclick = function() {
+  const formElements = document.getElementById("apiForm").elements;
+  const jsonData = {};
+  
+  for (const element of formElements) {
+    if (element.name) {
+      jsonData[element.name] = element.value;
+    }
+  }
+  
+  fetch('/openai', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(jsonData)
+  })
   .then(response => response.json())
   .then(data => {
     const outputDiv = document.getElementById("output");
-    const escapedText = document.createTextNode(data.output);
+    const escapedText = document.createTextNode(JSON.stringify(data.output, null, 2));
     const newElement = document.createElement("p");
     newElement.appendChild(escapedText);
     outputDiv.appendChild(newElement);
-  });
-};
+  });};
 </script>
+  
